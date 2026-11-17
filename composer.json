@@ -1,6 +1,6 @@
 {
     "name": "klxm/quickbar",
-    "description": "Befehlspalette für das REDAXO-6-Backend: Live-Suche über Seiten, Struktur, Medien und mehr – mit ⌘K/Strg+K aus der Kopfleiste, nach den Rechten des Benutzers, erweiterbar durch andere AddOns",
+    "description": "Successor of quick_navigation for REDAXO 6: command palette with live search across pages, structure, media and more – ⌘K/Ctrl+K from the top bar, respecting user permissions, extensible by other addons",
     "homepage": "https://github.com/KLXM/quickbar",
     "type": "redaxo-addon",
     "license": "MIT",

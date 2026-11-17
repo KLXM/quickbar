@@ -4,6 +4,8 @@
 
 # Quickbar für REDAXO 6
 
+**Der Nachfolger von [quick_navigation](https://github.com/FriendsOfREDAXO/quick_navigation) für REDAXO 6.**
+
 Schnell überall hin im Backend: eine **Befehlspalette** mit Live-Suche über Seiten, Struktur, Medien, YForm-Datensätze
 und Benutzer und mit **Befehlen** (`>`), **Favoriten** je Benutzer, ein **Strukturbaum** mit Suche, **YForm-Tabellen**
 mit „+“ für neue Datensätze und eine **Live-Suche im Medienpool** – immer nur über das, was der angemeldete Benutzer auch
@@ -11,8 +13,8 @@ mit „+“ für neue Datensätze und eine **Live-Suche im Medienpool** – imme
 
 ![Lupe, Favoriten, Strukturbaum und YForm-Tabellen in der Kopfleiste](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-header.png)
 
-> Quickbar ist die Neuentwicklung von [quick_navigation](https://github.com/FriendsOfREDAXO/quick_navigation) für
-> REDAXO 6 – ein eigenes AddOn von KLXM mit neuem Namen. **quick_navigation für REDAXO 5 wird bei Friends Of REDAXO
+> Quickbar ist der Nachfolger von [quick_navigation](https://github.com/FriendsOfREDAXO/quick_navigation): neu
+> entwickelt für REDAXO 6, als eigenes AddOn von KLXM mit neuem Namen. **quick_navigation für REDAXO 5 wird bei Friends Of REDAXO
 > weiter gepflegt**; Updates kommen dort wie gewohnt über den Installer.
 
 ## Installation
