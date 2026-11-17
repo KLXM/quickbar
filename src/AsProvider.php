@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation;
+namespace Klxm\Quickbar;
 
 use Attribute;
 
@@ -18,7 +18,7 @@ final readonly class AsProvider
         public string $key,
         public int $priority = 0,
         public ?string $prefix = null,
-        /** Treffer ohne Kürzel (sonst {@see QuickNavigation::LIMIT}) */
+        /** Treffer ohne Kürzel (sonst {@see Quickbar::LIMIT}) */
         public ?int $limit = null,
     ) {}
 }

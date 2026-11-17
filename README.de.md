@@ -1,25 +1,25 @@
-<p align="right">🌎 <a href="https://github.com/FriendsOfREDAXO/quick_navigation/blob/main/README.md">English</a></p>
+<p align="right">🌎 <a href="https://github.com/KLXM/quickbar/blob/main/README.md">English</a></p>
 
-![Quick Navigation für REDAXO 6 – Befehlspalette, Favoriten, Strukturbaum](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-title.png)
+![Quickbar für REDAXO 6 – Befehlspalette, Favoriten, Strukturbaum](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-title.png)
 
-# Quick Navigation für REDAXO 6
+# Quickbar für REDAXO 6
 
 Schnell überall hin im Backend: eine **Befehlspalette** mit Live-Suche über Seiten, Struktur, Medien, YForm-Datensätze
 und Benutzer und mit **Befehlen** (`>`), **Favoriten** je Benutzer, ein **Strukturbaum** mit Suche, **YForm-Tabellen**
 mit „+“ für neue Datensätze und eine **Live-Suche im Medienpool** – immer nur über das, was der angemeldete Benutzer auch
 öffnen darf. Andere AddOns erweitern die Suche um eigene Quellen und tragen ihre Domains ein.
 
-![Lupe, Favoriten, Strukturbaum und YForm-Tabellen in der Kopfleiste](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-header.png)
+![Lupe, Favoriten, Strukturbaum und YForm-Tabellen in der Kopfleiste](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-header.png)
 
-> Version 10 (Branch `main`) ist eine Neuentwicklung für REDAXO 6 und nicht kompatibel zu Quick Navigation 9.x
-> für REDAXO 5. **Quick Navigation für REDAXO 5 wird weiter gepflegt** – im Branch
-> [`redaxo-5.x`](https://github.com/FriendsOfREDAXO/quick_navigation/tree/redaxo-5.x); Updates kommen wie gewohnt über den
-> Installer.
+> Quickbar ist die Neuentwicklung von [quick_navigation](https://github.com/FriendsOfREDAXO/quick_navigation) für
+> REDAXO 6 – ein eigenes AddOn von KLXM mit neuem Namen. **quick_navigation für REDAXO 5 wird bei Friends Of REDAXO
+> weiter gepflegt**; Updates kommen dort wie gewohnt über den Installer.
 
 ## Installation
 
 ```bash
-composer require friendsofredaxo/quick_navigation:10.x-dev
+composer config repositories.quickbar '{"type": "vcs", "url": "https://github.com/KLXM/quickbar", "no-api": true}'
+composer require klxm/quickbar:1.x-dev
 php bin/console migrate
 ```
 
@@ -30,8 +30,8 @@ php bin/console migrate
 live, gruppiert nach Quelle, die Fundstellen hervorgehoben.
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-palette-empty.png" width="49%" alt="Palette ohne Eingabe: zuletzt bearbeitet">
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-palette.png" width="49%" alt="Palette mit Treffern aus Seiten und Struktur">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-palette-empty.png" width="49%" alt="Palette ohne Eingabe: zuletzt bearbeitet">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-palette.png" width="49%" alt="Palette mit Treffern aus Seiten und Struktur">
 </p>
 
 | Taste | Wirkung |
@@ -49,7 +49,7 @@ Nur in einer Quelle suchen: entweder über die Auswahl links neben dem Suchfeld 
 Kürzel steht klein daneben) oder direkt mit dem Kürzel. Die Auswahl setzt das Kürzel ins Feld und behält den Suchbegriff;
 wer das Kürzel tippt, sieht die Auswahl mitgehen. Eine Zahl findet den Artikel mit dieser ID.
 
-![Auswahl der Quelle mit Kürzeln](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-scope.png)
+![Auswahl der Quelle mit Kürzeln](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-scope.png)
 
 | Kürzel | Quelle |
 | --- | --- |
@@ -63,8 +63,8 @@ wer das Kürzel tippt, sieht die Auswahl mitgehen. Eine Zahl findet den Artikel 
 | `u:` | Benutzer (nur mit Recht auf die Benutzerverwaltung) |
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-palette-media.png" width="49%" alt="Nur im Medienpool suchen mit m:">
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-dark.png" width="49%" alt="Palette im dunklen Design">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-palette-media.png" width="49%" alt="Nur im Medienpool suchen mit m:">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-dark.png" width="49%" alt="Palette im dunklen Design">
 </p>
 
 ### Favoriten
@@ -76,7 +76,7 @@ Der **Stern in der Kopfleiste** ist gefüllt, wenn die aktuelle Seite gemerkt is
 unten „In der Palette durchsuchen“.
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-favorites.png" width="40%" alt="Favoriten-Panel am Stern in der Kopfleiste">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-favorites.png" width="40%" alt="Favoriten-Panel am Stern in der Kopfleiste">
 </p>
 
 In der Palette wird mit dem Stern an einem Treffer oder mit **⌘D / Strg+D** gemerkt: Seiten, Artikel, Kategorien, Medien, Medienkategorien, YForm-Datensätze
@@ -95,7 +95,7 @@ abweicht – Blöcke, Reihenfolge, Inhalte oder Status, „neu“ für Seiten oh
 gleich mit in der Palette, `w:` zeigt alle; Pfad, Zeitpunkt und wer zuletzt geändert hat stehen in der zweiten Zeile.
 Das gilt für die Arbeitsversion des Cores und damit auch für fluid.
 
-![Unveröffentlichte Arbeitsversionen](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-workversion.png)
+![Unveröffentlichte Arbeitsversionen](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-workversion.png)
 
 ### Befehle
 
@@ -109,13 +109,13 @@ ausführen darf:
 
 Befehle landen nicht unter „Zuletzt geöffnet“.
 
-![Befehle in der Palette](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-commands.png)
+![Befehle in der Palette](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-commands.png)
 
-Weitere Befehle trägt ein AddOn über den Extension Point `QuickNavigationCommands` ein (Liste von `Item`, Rechte über
+Weitere Befehle trägt ein AddOn über den Extension Point `QuickbarCommands` ein (Liste von `Item`, Rechte über
 `$ep->query->user`):
 
 ```php
-Extension::register(QuickNavigationCommands::class, static function (QuickNavigationCommands $ep): array {
+Extension::register(QuickbarCommands::class, static function (QuickbarCommands $ep): array {
     $commands = $ep->subject;
     if ($ep->query->user->admin) {
         $commands[] = new Item('Sitemap neu erzeugen', Url::backendPage('seo/sitemap', ['func' => 'generate']), icon: 'rex-icon fa-sitemap');
@@ -136,8 +136,8 @@ Das Suchfeld oben im Baum durchsucht die ganze Struktur (Name oder ID) und zeigt
 aufgeklappt.
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-tree.png" width="40%" alt="Strukturbaum, aufgeklappt bis zur aktuellen Seite">
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-tree-search.png" width="40%" alt="Suche im Strukturbaum">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-tree.png" width="40%" alt="Strukturbaum, aufgeklappt bis zur aktuellen Seite">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-tree-search.png" width="40%" alt="Suche im Strukturbaum">
 </p>
 
 Tastatur: Das Suchfeld hat beim Öffnen den Fokus, ↓ springt in den Baum, ↵ öffnet den ersten Treffer. Im Baum: ↑ ↓,
@@ -152,14 +152,14 @@ Palette mit `y:`. Die Suche geht über alle Textfelder der erlaubten Tabellen; o
 Datensätze je Tabelle.
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-yform.png" width="34%" alt="YForm-Tabellen mit + für neue Datensätze">
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-yform-search.png" width="64%" alt="Suche in YForm-Datensätzen mit y:">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-yform.png" width="34%" alt="YForm-Tabellen mit + für neue Datensätze">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-yform-search.png" width="64%" alt="Suche in YForm-Datensätzen mit y:">
 </p>
 
 ## Medienpool
 
 Der Medienpool läuft in REDAXO 6 als eigenes Fenster bzw. als Overlay beim Auswählen eines Mediums. Dort erweitert
-Quick Navigation das vorhandene Suchfeld:
+Quickbar das vorhandene Suchfeld:
 
 - **Live-Suche:** Treffer erscheinen beim Tippen unter dem Feld (Vorschaubild, Dateiname, Kategorie, Größe), ↑ ↓ wählen,
   ↵ öffnet das Medium.
@@ -172,7 +172,7 @@ Quick Navigation das vorhandene Suchfeld:
   Medium – in derselben Reihenfolge wie die Liste (Kategorie, Dateitypen, Sortierung); beim Überfahren zeigt eine
   Vorschau, wohin es geht. Auch im Auswahl-Modus, „übernehmen“ bleibt.
 
-![Live-Suche im Medienpool beim Auswählen eines Bildes](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-mediapool.png)
+![Live-Suche im Medienpool beim Auswählen eines Bildes](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-mediapool.png)
 
 ## Linkmap
 
@@ -200,11 +200,11 @@ Ein AddOn liefert Treffer mit einer Klasse, die `Provider` implementiert und das
 braucht es nicht, die Klasse wird automatisch gefunden:
 
 ```php
-use FriendsOfRedaxo\QuickNavigation\Action;
-use FriendsOfRedaxo\QuickNavigation\AsProvider;
-use FriendsOfRedaxo\QuickNavigation\Item;
-use FriendsOfRedaxo\QuickNavigation\Provider;
-use FriendsOfRedaxo\QuickNavigation\Query;
+use Klxm\Quickbar\Action;
+use Klxm\Quickbar\AsProvider;
+use Klxm\Quickbar\Item;
+use Klxm\Quickbar\Provider;
+use Klxm\Quickbar\Query;
 use Redaxo\Core\Filesystem\Url;
 
 #[AsProvider('news', priority: 40, prefix: 'n')]
@@ -256,36 +256,36 @@ final class NewsProvider implements Provider
 Ohne Attribut, etwa abhängig von der Konfiguration, im `boot()` des eigenen AddOns:
 
 ```php
-QuickNavigation::register('news', new NewsProvider(), priority: 40, prefix: 'n');
-QuickNavigation::unregister('users'); // eingebaute Quelle abschalten
+Quickbar::register('news', new NewsProvider(), priority: 40, prefix: 'n');
+Quickbar::unregister('users'); // eingebaute Quelle abschalten
 ```
 
 Wirft eine Quelle eine Exception, fehlt nur ihre Gruppe (im Entwicklungsmodus wird der Fehler angezeigt).
 
 ## Domains
 
-Quick Navigation kennt selbst keine Domains – AddOns, die welche verwalten (fluid, yrewrite …), tragen sie über den
-Extension Point `QuickNavigationDomains` ein. Ab zwei Domains zeigt der Strukturbaum oben eine Auswahl (vorgewählt ist
+Quickbar kennt selbst keine Domains – AddOns, die welche verwalten (fluid, yrewrite …), tragen sie über den
+Extension Point `QuickbarDomains` ein. Ab zwei Domains zeigt der Strukturbaum oben eine Auswahl (vorgewählt ist
 die Domain der aktuellen Seite, dazu „Alle Domains“): Der Baum beginnt dann in der Einstiegskategorie der Domain, die
 Einstiegskategorien der anderen Domains sind ausgeblendet, und die Suche im Baum bleibt in der Domain. In der Palette
 tragen Artikel und Kategorien die Domain als Badge.
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-tree-domains.png" width="40%" alt="Domain-Auswahl im Strukturbaum">
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-palette-domains.png" width="58%" alt="Domain als Badge in der Palette">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-tree-domains.png" width="40%" alt="Domain-Auswahl im Strukturbaum">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-palette-domains.png" width="58%" alt="Domain als Badge in der Palette">
 </p>
 
 Eine Domain hat einen Schlüssel, einen Namen, ihre Einstiegskategorie (`0` = ganze Struktur) und die Adresse. Die
-Anmeldung schadet nicht, wenn Quick Navigation fehlt – `::class` lädt keine Klasse, die Closure läuft nur, wenn der
+Anmeldung schadet nicht, wenn Quickbar fehlt – `::class` lädt keine Klasse, die Closure läuft nur, wenn der
 Extension Point ausgelöst wird. Für yrewrite zum Beispiel:
 
 ```php
-use FriendsOfRedaxo\QuickNavigation\Domain\Domain;
-use FriendsOfRedaxo\QuickNavigation\ExtensionPoint\QuickNavigationDomains;
+use Klxm\Quickbar\Domain\Domain;
+use Klxm\Quickbar\ExtensionPoint\QuickbarDomains;
 use Redaxo\Core\ExtensionPoint\Extension;
 use Yakamara\YRewrite\YRewrite;
 
-Extension::register(QuickNavigationDomains::class, static function (QuickNavigationDomains $ep): array {
+Extension::register(QuickbarDomains::class, static function (QuickbarDomains $ep): array {
     $domains = $ep->subject;
     foreach (YRewrite::getDomains() as $name => $domain) {
         if ('default' !== $name) {
@@ -315,14 +315,14 @@ Favoriten je Benutzer) brauchen eine REDAXO-Installation mit Datenbank. Sie lege
 „qn-test“ im Namen) und räumen danach auf:
 
 ```bash
-REDAXO_BOOTSTRAP=/pfad/zu/redaxo/.tools/bootstrap.php vendor/bin/phpunit -c /pfad/zu/quick_navigation/phpunit.dist.xml
+REDAXO_BOOTSTRAP=/pfad/zu/redaxo/.tools/bootstrap.php vendor/bin/phpunit -c /pfad/zu/quickbar/phpunit.dist.xml
 ```
 
 Ohne `REDAXO_BOOTSTRAP` werden die Integrationstests übersprungen.
 
 ## Autor
 
-**Thomas Skerbis** ([skerbis](https://github.com/skerbis)) für [Friends Of REDAXO](https://friendsofredaxo.github.io)
+**Thomas Skerbis** ([skerbis](https://github.com/skerbis)) für [KLXM Crossmedia](https://klxm.de)
 
 ## Lizenz
 

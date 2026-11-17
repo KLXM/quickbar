@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation;
+namespace Klxm\Quickbar;
 
 use Override;
 use Redaxo\Core\ApiFunction\ApiFunction;
@@ -13,18 +13,18 @@ use Redaxo\Core\Http\Response;
 use function mb_substr;
 
 /**
- * Live-Suche der Befehlspalette (nur lesend): ?rex-api-call=quick_navigation&q=….
+ * Live-Suche der Befehlspalette (nur lesend): ?rex-api-call=quickbar&q=….
  *
  * Die Quellen prüfen die Rechte des angemeldeten Benutzers selbst ({@see Provider}).
  */
-#[AsApiFunction('quick_navigation')]
+#[AsApiFunction('quickbar')]
 final class SearchApi extends ApiFunction
 {
     #[Override]
     public function execute(): Result
     {
         $user = Core::requireUser();
-        $result = QuickNavigation::search(mb_substr(Request::get('q', 'string', ''), 0, 200), $user);
+        $result = Quickbar::search(mb_substr(Request::get('q', 'string', ''), 0, 200), $user);
 
         Response::cleanOutputBuffers();
         Response::setHeader('Cache-Control', 'no-store');

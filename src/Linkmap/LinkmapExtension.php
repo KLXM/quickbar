@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Linkmap;
+namespace Klxm\Quickbar\Linkmap;
 
 use Redaxo\Core\Backend\Controller;
 use Redaxo\Core\ExtensionPoint\Extension;
@@ -44,13 +44,13 @@ final class LinkmapExtension
             'language' => Language::exists($languageId) ? $languageId : Language::getStartId(),
             'languageParam' => 'qn_language',
             'i18n' => [
-                'recent' => I18n::msg('quick_navigation_recent_edits'),
-                'results' => I18n::msg('quick_navigation_results'),
-                'empty' => I18n::msg('quick_navigation_empty'),
-                'pick' => I18n::msg('quick_navigation_media_pick'),
+                'recent' => I18n::msg('quickbar_recent_edits'),
+                'results' => I18n::msg('quickbar_results'),
+                'empty' => I18n::msg('quickbar_empty'),
+                'pick' => I18n::msg('quickbar_media_pick'),
             ],
         ];
-        $label = I18n::msg('quick_navigation_linkmap_search');
+        $label = I18n::msg('quickbar_linkmap_search');
 
         return '<search class="qn-linkmap-search"><div class="rex-input-group">'
             . '<span class="rex-input-group-text"><i class="rex-icon rex-icon-search" aria-hidden="true"></i></span>'

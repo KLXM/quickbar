@@ -1,9 +1,10 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation;
+namespace Klxm\Quickbar;
 
 use Override;
 use Redaxo\Core\Addon\Addon;
+use Redaxo\Core\Config;
 use Redaxo\Core\Core;
 use Redaxo\Core\ExtensionPoint\Extension;
 use Redaxo\Core\ExtensionPoint\ExtensionPoint;
@@ -13,6 +14,7 @@ use Redaxo\Core\Translation\I18n;
 use Redaxo\Core\View\Asset;
 
 use function array_map;
+use function is_array;
 use function filemtime;
 use function is_file;
 use function json_encode;
@@ -24,11 +26,11 @@ use const JSON_THROW_ON_ERROR;
 use const JSON_UNESCAPED_UNICODE;
 
 /**
- * Quick Navigation: Befehlspalette im Backend – Suchknopf in der Kopfleiste, ⌘K/Strg+K überall.
+ * Quickbar: Befehlspalette im Backend – Suchknopf in der Kopfleiste, ⌘K/Strg+K überall.
  *
- * Quellen: {@see Provider}, angemeldet mit {@see AsProvider} oder {@see QuickNavigation::register()}.
+ * Quellen: {@see Provider}, angemeldet mit {@see AsProvider} oder {@see Quickbar::register()}.
  */
-final class QuickNavigationAddon extends Addon
+final class QuickbarAddon extends Addon
 {
     /** Stelle in der Kopfleiste, vor der der Suchknopf steht */
     private const string ANCHOR = '<ul class="rex-topbar-meta">';
@@ -39,8 +41,8 @@ final class QuickNavigationAddon extends Addon
         if (!Core::isBackend() || null === Core::getUser()) {
             return;
         }
-        Asset::addCssFile($this->asset('quick-navigation.css'));
-        Asset::addJsFile($this->asset('quick-navigation.js'), [Asset::JS_DEFERED => true]);
+        Asset::addCssFile($this->asset('quickbar.css'));
+        Asset::addJsFile($this->asset('quickbar.js'), [Asset::JS_DEFERED => true]);
         Asset::addJsFile($this->asset('media-search.js'), [Asset::JS_DEFERED => true]);
         Media\MediaPoolExtension::boot();
         Linkmap\LinkmapExtension::boot();
@@ -55,6 +57,20 @@ final class QuickNavigationAddon extends Addon
         });
     }
 
+    /**
+     * Übernimmt einmalig die Einstellungen der Vorgängerin quick_navigation (Favoriten der Benutzer), solange Quickbar
+     * selbst noch nichts gespeichert hat. Läuft bei jedem `console migrate`.
+     */
+    #[Override]
+    public function install(): void
+    {
+        $previous = Config::get('quick_navigation');
+        if (!is_array($previous) || [] === $previous || $this->hasConfig()) {
+            return;
+        }
+        $this->setConfig($previous);
+    }
+
     /** Suchknopf; die Palette baut das Skript beim ersten Öffnen */
     private function trigger(): string
     {
@@ -62,28 +78,28 @@ final class QuickNavigationAddon extends Addon
         $config = [
             'url' => Url::backendController(SearchApi::getUrlParams()),
             'favoriteUrl' => Url::backendController(FavoriteApi::getUrlParams()),
-            'storage' => 'quick-navigation:' . Core::getProject()->instanceName . ':' . $user->id,
-            'prefixes' => QuickNavigation::prefixes(),
+            'storage' => 'quickbar:' . Core::getProject()->instanceName . ':' . $user->id,
+            'prefixes' => Quickbar::prefixes(),
             'i18n' => [
-                'label' => I18n::msg('quick_navigation_label'),
-                'placeholder' => I18n::msg('quick_navigation_placeholder'),
-                'recent' => I18n::msg('quick_navigation_recent'),
-                'empty' => I18n::msg('quick_navigation_empty'),
-                'loading' => I18n::msg('quick_navigation_loading'),
-                'error' => I18n::msg('quick_navigation_error'),
-                'open' => I18n::msg('quick_navigation_hint_open'),
-                'newTab' => I18n::msg('quick_navigation_hint_new_tab'),
-                'actions' => I18n::msg('quick_navigation_hint_actions'),
-                'close' => I18n::msg('quick_navigation_hint_close'),
-                'favorite' => I18n::msg('quick_navigation_hint_favorite'),
-                'favoriteAdd' => I18n::msg('quick_navigation_favorite_add'),
-                'favoriteRemove' => I18n::msg('quick_navigation_favorite_remove'),
-                'favoriteAdded' => I18n::msg('quick_navigation_favorite_added'),
-                'favoriteRemoved' => I18n::msg('quick_navigation_favorite_removed'),
-                'scopeAll' => I18n::msg('quick_navigation_scope_all'),
-                'scopeLabel' => I18n::msg('quick_navigation_scope_label'),
-                'results' => I18n::msg('quick_navigation_results'),
-                'clear' => I18n::msg('quick_navigation_clear_recent'),
+                'label' => I18n::msg('quickbar_label'),
+                'placeholder' => I18n::msg('quickbar_placeholder'),
+                'recent' => I18n::msg('quickbar_recent'),
+                'empty' => I18n::msg('quickbar_empty'),
+                'loading' => I18n::msg('quickbar_loading'),
+                'error' => I18n::msg('quickbar_error'),
+                'open' => I18n::msg('quickbar_hint_open'),
+                'newTab' => I18n::msg('quickbar_hint_new_tab'),
+                'actions' => I18n::msg('quickbar_hint_actions'),
+                'close' => I18n::msg('quickbar_hint_close'),
+                'favorite' => I18n::msg('quickbar_hint_favorite'),
+                'favoriteAdd' => I18n::msg('quickbar_favorite_add'),
+                'favoriteRemove' => I18n::msg('quickbar_favorite_remove'),
+                'favoriteAdded' => I18n::msg('quickbar_favorite_added'),
+                'favoriteRemoved' => I18n::msg('quickbar_favorite_removed'),
+                'scopeAll' => I18n::msg('quickbar_scope_all'),
+                'scopeLabel' => I18n::msg('quickbar_scope_label'),
+                'results' => I18n::msg('quickbar_results'),
+                'clear' => I18n::msg('quickbar_clear_recent'),
             ],
         ];
 
@@ -99,20 +115,20 @@ final class QuickNavigationAddon extends Addon
                 ),
             ];
             $config['i18n'] += [
-                'tree' => I18n::msg('quick_navigation_tree'),
-                'treeOpen' => I18n::msg('quick_navigation_tree_open'),
-                'treeEmpty' => I18n::msg('quick_navigation_tree_empty'),
-                'treeSearch' => I18n::msg('quick_navigation_tree_search'),
-                'allDomains' => I18n::msg('quick_navigation_all_domains'),
-                'domain' => I18n::msg('quick_navigation_domain'),
-                'edit' => I18n::msg('quick_navigation_action_edit'),
-                'view' => I18n::msg('quick_navigation_action_view'),
-                'offline' => I18n::msg('quick_navigation_offline'),
+                'tree' => I18n::msg('quickbar_tree'),
+                'treeOpen' => I18n::msg('quickbar_tree_open'),
+                'treeEmpty' => I18n::msg('quickbar_tree_empty'),
+                'treeSearch' => I18n::msg('quickbar_tree_search'),
+                'allDomains' => I18n::msg('quickbar_all_domains'),
+                'domain' => I18n::msg('quickbar_domain'),
+                'edit' => I18n::msg('quickbar_action_edit'),
+                'view' => I18n::msg('quickbar_action_view'),
+                'offline' => I18n::msg('quickbar_offline'),
             ];
             $tree = '<button type="button" class="qn-tree-trigger" aria-haspopup="tree" aria-expanded="false" aria-controls="qn-tree"'
-                . ' title="' . escape(I18n::msg('quick_navigation_tree')) . '">'
+                . ' title="' . escape(I18n::msg('quickbar_tree')) . '">'
                 . '<i class="rex-icon fa-solid fa-sitemap" aria-hidden="true"></i>'
-                . '<span class="rex-u-visually-hidden">' . escape(I18n::msg('quick_navigation_tree')) . '</span>'
+                . '<span class="rex-u-visually-hidden">' . escape(I18n::msg('quickbar_tree')) . '</span>'
                 . '</button>';
         }
 
@@ -127,15 +143,15 @@ final class QuickNavigationAddon extends Addon
                 'add' => YForm\YFormTables::canEdit($table, $user) ? YForm\YFormTables::url($table, ['func' => 'add']) : null,
             ], $tables);
             $config['i18n'] += [
-                'yform' => I18n::msg('quick_navigation_yform'),
-                'yformFilter' => I18n::msg('quick_navigation_yform_filter'),
-                'yformAdd' => I18n::msg('quick_navigation_yform_add'),
-                'yformSearch' => I18n::msg('quick_navigation_yform_search'),
+                'yform' => I18n::msg('quickbar_yform'),
+                'yformFilter' => I18n::msg('quickbar_yform_filter'),
+                'yformAdd' => I18n::msg('quickbar_yform_add'),
+                'yformSearch' => I18n::msg('quickbar_yform_search'),
             ];
             $yform = '<button type="button" class="qn-yform-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="qn-yform"'
-                . ' title="' . escape(I18n::msg('quick_navigation_yform')) . '">'
+                . ' title="' . escape(I18n::msg('quickbar_yform')) . '">'
                 . '<i class="rex-icon fa-solid fa-table-list" aria-hidden="true"></i>'
-                . '<span class="rex-u-visually-hidden">' . escape(I18n::msg('quick_navigation_yform')) . '</span>'
+                . '<span class="rex-u-visually-hidden">' . escape(I18n::msg('quickbar_yform')) . '</span>'
                 . '</button>';
         }
 
@@ -143,23 +159,23 @@ final class QuickNavigationAddon extends Addon
         $current = Favorites::normalize('index.php?' . Request::server('QUERY_STRING', 'string', ''));
         $isFavorite = null !== $current && isset(Favorites::urls($user)[$current]);
         $config['i18n'] += [
-            'favorites' => I18n::msg('quick_navigation_group_favorites'),
-            'favoritePage' => I18n::msg('quick_navigation_cmd_favorite'),
-            'favoritePageOn' => I18n::msg('quick_navigation_favorite_page_on'),
-            'favoritesEmpty' => I18n::msg('quick_navigation_favorites_empty'),
-            'favoritesAll' => I18n::msg('quick_navigation_favorites_all'),
-            'favoritesFilter' => I18n::msg('quick_navigation_favorites_filter'),
+            'favorites' => I18n::msg('quickbar_group_favorites'),
+            'favoritePage' => I18n::msg('quickbar_cmd_favorite'),
+            'favoritePageOn' => I18n::msg('quickbar_favorite_page_on'),
+            'favoritesEmpty' => I18n::msg('quickbar_favorites_empty'),
+            'favoritesAll' => I18n::msg('quickbar_favorites_all'),
+            'favoritesFilter' => I18n::msg('quickbar_favorites_filter'),
         ];
         $star = '<button type="button" class="qn-fav-trigger' . ($isFavorite ? ' is-on' : '') . '" aria-haspopup="true" aria-expanded="false" aria-controls="qn-favorites"'
-            . ' title="' . escape(I18n::msg('quick_navigation_group_favorites')) . '">'
+            . ' title="' . escape(I18n::msg('quickbar_group_favorites')) . '">'
             . '<i class="rex-icon fa-' . ($isFavorite ? 'solid' : 'regular') . ' fa-star" aria-hidden="true"></i>'
-            . '<span class="rex-u-visually-hidden">' . escape(I18n::msg('quick_navigation_group_favorites')) . '</span>'
+            . '<span class="rex-u-visually-hidden">' . escape(I18n::msg('quickbar_group_favorites')) . '</span>'
             . '</button>';
 
-        $label = I18n::msg('quick_navigation_label');
+        $label = I18n::msg('quickbar_label');
 
         return '<div class="qn-slot"><button type="button" class="qn-trigger" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K"'
-            . ' title="' . escape($label) . '" data-quick-navigation="' . escape(json_encode($config, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE)) . '">'
+            . ' title="' . escape($label) . '" data-quickbar="' . escape(json_encode($config, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE)) . '">'
             . '<i class="rex-icon rex-icon-search" aria-hidden="true"></i>'
             . '<span class="rex-u-visually-hidden">' . escape($label) . '</span>'
             . '</button>' . $star . $tree . $yform . '</div>';

@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\YForm;
+namespace Klxm\Quickbar\YForm;
 
 use Redaxo\Core\Filesystem\Url;
 use Redaxo\Core\Security\User;

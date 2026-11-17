@@ -1,15 +1,15 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Tests\Integration;
+namespace Klxm\Quickbar\Tests\Integration;
 
-use FriendsOfRedaxo\QuickNavigation\Command\CommandProvider;
-use FriendsOfRedaxo\QuickNavigation\Favorites;
-use FriendsOfRedaxo\QuickNavigation\Media\MediaFinder;
-use FriendsOfRedaxo\QuickNavigation\Provider\MediaProvider;
-use FriendsOfRedaxo\QuickNavigation\Provider\PageProvider;
-use FriendsOfRedaxo\QuickNavigation\Provider\StructureProvider;
-use FriendsOfRedaxo\QuickNavigation\Provider\UserProvider;
-use FriendsOfRedaxo\QuickNavigation\StructureTree;
+use Klxm\Quickbar\Command\CommandProvider;
+use Klxm\Quickbar\Favorites;
+use Klxm\Quickbar\Media\MediaFinder;
+use Klxm\Quickbar\Provider\MediaProvider;
+use Klxm\Quickbar\Provider\PageProvider;
+use Klxm\Quickbar\Provider\StructureProvider;
+use Klxm\Quickbar\Provider\UserProvider;
+use Klxm\Quickbar\StructureTree;
 use Redaxo\Core\Backend\Controller;
 use Redaxo\Core\Backend\MainPage;
 use Redaxo\Core\Core;
@@ -122,14 +122,14 @@ final class PermissionTest extends IntegrationTestCase
     private function assertCommands(): void
     {
         $provider = new CommandProvider();
-        $cacheTitle = I18n::msg('quick_navigation_cmd_cache');
-        $userTitle = I18n::msg('quick_navigation_cmd_user');
+        $cacheTitle = I18n::msg('quickbar_cmd_cache');
+        $userTitle = I18n::msg('quickbar_cmd_user');
 
         // ohne Kategorie: Hauptebene – darauf hat der Redakteur keine Rechte
         $editor = self::titles($provider, '', self::editor());
         self::assertNotContains($cacheTitle, $editor);
         self::assertNotContains($userTitle, $editor);
-        self::assertSame([], array_filter($editor, static fn (string $t) => str_contains($t, I18n::msg('quick_navigation_root'))));
+        self::assertSame([], array_filter($editor, static fn (string $t) => str_contains($t, I18n::msg('quickbar_root'))));
 
         // in Kategorie A darf er Artikel und Kategorien anlegen, in B nicht
         $_GET['qn_category'] = (string) self::$categoryA;

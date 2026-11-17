@@ -1,12 +1,12 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Provider;
+namespace Klxm\Quickbar\Provider;
 
-use FriendsOfRedaxo\QuickNavigation\AsProvider;
-use FriendsOfRedaxo\QuickNavigation\Favorites;
-use FriendsOfRedaxo\QuickNavigation\Item;
-use FriendsOfRedaxo\QuickNavigation\Provider;
-use FriendsOfRedaxo\QuickNavigation\Query;
+use Klxm\Quickbar\AsProvider;
+use Klxm\Quickbar\Favorites;
+use Klxm\Quickbar\Item;
+use Klxm\Quickbar\Provider;
+use Klxm\Quickbar\Query;
 use Override;
 use Redaxo\Core\Translation\I18n;
 
@@ -19,7 +19,7 @@ final class FavoriteProvider implements Provider
     #[Override]
     public function label(?Query $query = null): string
     {
-        return I18n::msg('quick_navigation_group_favorites');
+        return I18n::msg('quickbar_group_favorites');
     }
 
     #[Override]

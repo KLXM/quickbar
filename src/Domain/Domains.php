@@ -1,15 +1,15 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Domain;
+namespace Klxm\Quickbar\Domain;
 
-use FriendsOfRedaxo\QuickNavigation\ExtensionPoint\QuickNavigationDomains;
+use Klxm\Quickbar\ExtensionPoint\QuickbarDomains;
 use Redaxo\Core\ExtensionPoint\Extension;
 
 use function array_search;
 use function count;
 use function in_array;
 
-/** Domains, die AddOns per {@see QuickNavigationDomains} eintragen */
+/** Domains, die AddOns per {@see QuickbarDomains} eintragen */
 final class Domains
 {
     /** @var array<string, Domain>|null */
@@ -22,7 +22,7 @@ final class Domains
             return self::$all;
         }
         self::$all = [];
-        foreach (Extension::dispatch(new QuickNavigationDomains()) as $domain) {
+        foreach (Extension::dispatch(new QuickbarDomains()) as $domain) {
             if ($domain instanceof Domain) {
                 self::$all[$domain->key] ??= $domain;
             }

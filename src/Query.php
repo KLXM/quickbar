@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation;
+namespace Klxm\Quickbar;
 
 use Redaxo\Core\Security\User;
 

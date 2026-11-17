@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation;
+namespace Klxm\Quickbar;
 
 use Redaxo\Core\ClassDiscovery;
 use Redaxo\Core\Core;
@@ -23,10 +23,10 @@ use function usort;
  * Quellen anderer AddOns werden über das Attribut {@see AsProvider} gefunden. Zur Laufzeit (z. B. abhängig von der
  * Konfiguration) geht es auch ohne Attribut:
  *
- *     QuickNavigation::register('news', new NewsProvider(), priority: 40, prefix: 'n');
- *     QuickNavigation::unregister('users');
+ *     Quickbar::register('news', new NewsProvider(), priority: 40, prefix: 'n');
+ *     Quickbar::unregister('users');
  */
-final class QuickNavigation
+final class Quickbar
 {
     /** Treffer je Gruppe – und wenn nur in einer Quelle gesucht wird (Kürzel) */
     public const int LIMIT = 6;

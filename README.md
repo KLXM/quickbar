@@ -1,25 +1,25 @@
-<p align="right">🌎 <a href="https://github.com/FriendsOfREDAXO/quick_navigation/blob/main/README.de.md">Deutsch</a></p>
+<p align="right">🌎 <a href="https://github.com/KLXM/quickbar/blob/main/README.de.md">Deutsch</a></p>
 
-![Quick Navigation for REDAXO 6 – command palette, favorites, structure tree](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-title-en.png)
+![Quickbar for REDAXO 6 – command palette, favorites, structure tree](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-title-en.png)
 
-# Quick Navigation for REDAXO 6
+# Quickbar for REDAXO 6
 
 Get anywhere in the backend fast: a **command palette** with live search across pages, structure, media, YForm records
 and users, with **commands** (`>`) and per-user **favorites**, a **structure tree** with search, **YForm tables** with
 “+” for new records and a **live search in the media pool** – always limited to what the signed-in user is allowed to
 open. Other addons add their own search sources and register their domains.
 
-![Search, favorites, structure tree and YForm tables in the top bar](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-header.png)
+![Search, favorites, structure tree and YForm tables in the top bar](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-header.png)
 
-> Version 10 (branch `main`) is a rewrite for REDAXO 6 and not compatible with Quick Navigation 9.x for
-> REDAXO 5. **Quick Navigation for REDAXO 5 is still maintained** – in the branch
-> [`redaxo-5.x`](https://github.com/FriendsOfREDAXO/quick_navigation/tree/redaxo-5.x); updates arrive through the
-> installer as usual. The screenshots show the German backend.
+> Quickbar is the rewrite of [quick_navigation](https://github.com/FriendsOfREDAXO/quick_navigation) for REDAXO 6 –
+> a separate addon by KLXM with a new name. **quick_navigation for REDAXO 5 is still maintained by Friends Of REDAXO**;
+> updates arrive there through the installer as usual.
 
 ## Installation
 
 ```bash
-composer require friendsofredaxo/quick_navigation:10.x-dev
+composer config repositories.quickbar '{"type": "vcs", "url": "https://github.com/KLXM/quickbar", "no-api": true}'
+composer require klxm/quickbar:1.x-dev
 php bin/console migrate
 ```
 
@@ -30,8 +30,8 @@ the **recently opened** results (stored in the browser) and the **recently edite
 live, grouped by source, with the matches highlighted.
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-palette-empty.png" width="49%" alt="Palette without input: favorites and recent items">
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-palette.png" width="49%" alt="Palette with results from pages, commands and structure">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-palette-empty.png" width="49%" alt="Palette without input: favorites and recent items">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-palette.png" width="49%" alt="Palette with results from pages, commands and structure">
 </p>
 
 | Key | Action |
@@ -49,7 +49,7 @@ To search a single source, use the selector left of the search field (“Everyth
 shown next to each) or type the prefix directly. The selector puts the prefix into the field and keeps the search term;
 typing a prefix updates the selector. A number finds the article with that ID.
 
-![Choosing the source, with prefixes](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-scope.png)
+![Choosing the source, with prefixes](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-scope.png)
 
 | Prefix | Source |
 | --- | --- |
@@ -63,8 +63,8 @@ typing a prefix updates the selector. A number finds the article with that ID.
 | `u:` | users (only with permission for user management) |
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-palette-media.png" width="49%" alt="Searching only the media pool with m:">
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-dark.png" width="49%" alt="Palette in the dark theme">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-palette-media.png" width="49%" alt="Searching only the media pool with m:">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-dark.png" width="49%" alt="Palette in the dark theme">
 </p>
 
 ### Favorites
@@ -76,7 +76,7 @@ The **star in the top bar** is filled when the current page is a favorite. Click
 entries), at the bottom “search in the palette”.
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-favorites.png" width="40%" alt="Favorites panel of the star in the top bar">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-favorites.png" width="40%" alt="Favorites panel of the star in the top bar">
 </p>
 
 In the palette, the star on a result or **⌘D / Ctrl+D** adds it: pages, articles, categories, media, media categories,
@@ -94,7 +94,7 @@ live version – blocks, order, content or status, “new” for pages without a
 appear right away, `w:` lists all; path, time and the last editor are shown in the second line. This covers the core’s
 working version and therefore fluid as well.
 
-![Unpublished working versions](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-workversion.png)
+![Unpublished working versions](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-workversion.png)
 
 ### Commands
 
@@ -107,13 +107,13 @@ With `>` the palette shows commands; matching ones also appear in the normal sea
 
 Commands are not added to “recently opened”.
 
-![Commands in the palette](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-commands.png)
+![Commands in the palette](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-commands.png)
 
-An addon adds further commands via the extension point `QuickNavigationCommands` (a list of `Item`, permissions via
+An addon adds further commands via the extension point `QuickbarCommands` (a list of `Item`, permissions via
 `$ep->query->user`):
 
 ```php
-Extension::register(QuickNavigationCommands::class, static function (QuickNavigationCommands $ep): array {
+Extension::register(QuickbarCommands::class, static function (QuickbarCommands $ep): array {
     $commands = $ep->subject;
     if ($ep->query->user->admin) {
         $commands[] = new Item('Regenerate sitemap', Url::backendPage('seo/sitemap', ['func' => 'generate']), icon: 'rex-icon fa-sitemap');
@@ -134,8 +134,8 @@ The search field at the top of the tree searches the whole structure (name or ID
 categories, expanded.
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-tree.png" width="40%" alt="Structure tree expanded to the current page">
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-tree-search.png" width="40%" alt="Search in the structure tree">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-tree.png" width="40%" alt="Structure tree expanded to the current page">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-tree-search.png" width="40%" alt="Search in the structure tree">
 </p>
 
 Keyboard: the search field has the focus when opening, ↓ moves into the tree, ↵ opens the first match. In the tree:
@@ -149,13 +149,13 @@ tables), “+” adds a new record right away (only with edit permission), and �
 The search covers all text fields of the permitted tables; without a search term `y:` shows the newest records per table.
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-yform.png" width="34%" alt="YForm tables with + for new records">
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-yform-search.png" width="64%" alt="Searching YForm records with y:">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-yform.png" width="34%" alt="YForm tables with + for new records">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-yform-search.png" width="64%" alt="Searching YForm records with y:">
 </p>
 
 ## Media pool
 
-In REDAXO 6 the media pool runs as a window of its own or as an overlay when choosing a medium. There, Quick Navigation
+In REDAXO 6 the media pool runs as a window of its own or as an overlay when choosing a medium. There, Quickbar
 extends the existing search field:
 
 - **Live search:** results appear below the field while typing (thumbnail, file name, category, size), ↑ ↓ select,
@@ -168,7 +168,7 @@ extends the existing search field:
   same order as the list (category, file types, sorting); a preview on hover shows where it goes. Also in picker mode,
   “select” stays.
 
-![Live search in the media pool while choosing an image](https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-mediapool.png)
+![Live search in the media pool while choosing an image](https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-mediapool.png)
 
 ## Linkmap
 
@@ -196,11 +196,11 @@ An addon provides results with a class that implements `Provider` and carries th
 the class is discovered automatically:
 
 ```php
-use FriendsOfRedaxo\QuickNavigation\Action;
-use FriendsOfRedaxo\QuickNavigation\AsProvider;
-use FriendsOfRedaxo\QuickNavigation\Item;
-use FriendsOfRedaxo\QuickNavigation\Provider;
-use FriendsOfRedaxo\QuickNavigation\Query;
+use Klxm\Quickbar\Action;
+use Klxm\Quickbar\AsProvider;
+use Klxm\Quickbar\Item;
+use Klxm\Quickbar\Provider;
+use Klxm\Quickbar\Query;
 use Redaxo\Core\Filesystem\Url;
 
 #[AsProvider('news', priority: 40, prefix: 'n')]
@@ -249,36 +249,36 @@ final class NewsProvider implements Provider
 Without the attribute, e.g. depending on configuration, in the `boot()` of your addon:
 
 ```php
-QuickNavigation::register('news', new NewsProvider(), priority: 40, prefix: 'n');
-QuickNavigation::unregister('users'); // switch off a built-in source
+Quickbar::register('news', new NewsProvider(), priority: 40, prefix: 'n');
+Quickbar::unregister('users'); // switch off a built-in source
 ```
 
 If a source throws an exception, only its group is missing (in dev mode the error is shown).
 
 ## Domains
 
-Quick Navigation doesn’t know about domains itself – addons that manage them (fluid, yrewrite …) register them via the
-extension point `QuickNavigationDomains`. From two domains on, the structure tree shows a selector at the top
+Quickbar doesn’t know about domains itself – addons that manage them (fluid, yrewrite …) register them via the
+extension point `QuickbarDomains`. From two domains on, the structure tree shows a selector at the top
 (preselected is the domain of the current page, plus “all domains”): the tree then starts in the domain’s mount
 category, the mount categories of the other domains are hidden, and the tree search stays within the domain. In the
 palette, articles and categories carry the domain as a badge.
 
 <p>
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-tree-domains.png" width="40%" alt="Domain selector in the structure tree">
-  <img src="https://raw.githubusercontent.com/FriendsOfREDAXO/quick_navigation/assets/r6-palette-domains.png" width="58%" alt="Domain as badge in the palette">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-tree-domains.png" width="40%" alt="Domain selector in the structure tree">
+  <img src="https://raw.githubusercontent.com/KLXM/quickbar/assets/r6-palette-domains.png" width="58%" alt="Domain as badge in the palette">
 </p>
 
 A domain has a key, a name, its mount category (`0` = whole structure) and its address. Registering does no harm when
-Quick Navigation is missing – `::class` doesn’t load a class, the closure only runs when the extension point is
+Quickbar is missing – `::class` doesn’t load a class, the closure only runs when the extension point is
 dispatched. For yrewrite, for example:
 
 ```php
-use FriendsOfRedaxo\QuickNavigation\Domain\Domain;
-use FriendsOfRedaxo\QuickNavigation\ExtensionPoint\QuickNavigationDomains;
+use Klxm\Quickbar\Domain\Domain;
+use Klxm\Quickbar\ExtensionPoint\QuickbarDomains;
 use Redaxo\Core\ExtensionPoint\Extension;
 use Yakamara\YRewrite\YRewrite;
 
-Extension::register(QuickNavigationDomains::class, static function (QuickNavigationDomains $ep): array {
+Extension::register(QuickbarDomains::class, static function (QuickbarDomains $ep): array {
     $domains = $ep->subject;
     foreach (YRewrite::getDomains() as $name => $domain) {
         if ('default' !== $name) {
@@ -308,14 +308,14 @@ favorites per user) need a REDAXO installation with database. They create their 
 “qn-test”) and clean up afterwards:
 
 ```bash
-REDAXO_BOOTSTRAP=/path/to/redaxo/.tools/bootstrap.php vendor/bin/phpunit -c /path/to/quick_navigation/phpunit.dist.xml
+REDAXO_BOOTSTRAP=/path/to/redaxo/.tools/bootstrap.php vendor/bin/phpunit -c /path/to/quickbar/phpunit.dist.xml
 ```
 
 Without `REDAXO_BOOTSTRAP` the integration tests are skipped.
 
 ## Author
 
-**Thomas Skerbis** ([skerbis](https://github.com/skerbis)) for [Friends Of REDAXO](https://friendsofredaxo.github.io)
+**Thomas Skerbis** ([skerbis](https://github.com/skerbis)) for [KLXM Crossmedia](https://klxm.de)
 
 ## License
 

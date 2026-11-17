@@ -1,5 +1,5 @@
 /**
- * Quick Navigation – Live-Suche im Medienpool und in der Linkmap.
+ * Quickbar – Live-Suche im Medienpool und in der Linkmap.
  *
  * Das Suchfeld des Medienpools (#be_search-media-name mit data-qn-media) zeigt beim Tippen Treffer, ohne Eingabe die
  * zuletzt bearbeiteten Medien. Im Auswahl-Modus (Overlay eines Medienfelds) hat jeder Treffer „übernehmen“ – ein

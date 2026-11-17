@@ -1,8 +1,8 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Domain;
+namespace Klxm\Quickbar\Domain;
 
-/** Eine Domain der Website, wie sie der Strukturbaum zeigt – eingetragen per {@see \\FriendsOfRedaxo\\QuickNavigation\\ExtensionPoint\\QuickNavigationDomains} */
+/** Eine Domain der Website, wie sie der Strukturbaum zeigt – eingetragen per {@see \\Klxm\\Quickbar\\ExtensionPoint\\QuickbarDomains} */
 final readonly class Domain
 {
     public function __construct(

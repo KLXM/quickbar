@@ -1,9 +1,9 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation;
+namespace Klxm\Quickbar;
 
-use FriendsOfRedaxo\QuickNavigation\Domain\Domain;
-use FriendsOfRedaxo\QuickNavigation\Domain\Domains;
+use Klxm\Quickbar\Domain\Domain;
+use Klxm\Quickbar\Domain\Domains;
 use Redaxo\Core\Content\Article;
 use Redaxo\Core\Content\Category;
 use Redaxo\Core\Content\StructurePermission;

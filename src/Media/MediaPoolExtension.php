@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Media;
+namespace Klxm\Quickbar\Media;
 
 use Redaxo\Core\Core;
 use Redaxo\Core\ExtensionPoint\Extension;
@@ -86,10 +86,10 @@ final class MediaPoolExtension
             'picker' => in_array($picker, ['single', 'multiple'], true) ? $picker : '',
             'language' => Request::request('language', 'int', 0),
             'i18n' => [
-                'recent' => I18n::msg('quick_navigation_media_recent'),
-                'results' => I18n::msg('quick_navigation_results'),
-                'empty' => I18n::msg('quick_navigation_empty'),
-                'pick' => I18n::msg('quick_navigation_media_pick'),
+                'recent' => I18n::msg('quickbar_media_recent'),
+                'results' => I18n::msg('quickbar_results'),
+                'empty' => I18n::msg('quickbar_empty'),
+                'pick' => I18n::msg('quickbar_media_pick'),
             ],
         ];
         $toolbar = str_replace(
@@ -119,7 +119,7 @@ final class MediaPoolExtension
             self::SORT => $next,
         ]));
         $icon = ['date' => 'fa-arrow-down-wide-short', 'name' => 'fa-arrow-down-a-z', 'title' => 'fa-heading'][$sort];
-        $label = I18n::msg('quick_navigation_media_sort_' . $sort) . ' – ' . I18n::msg('quick_navigation_media_sort_next', I18n::msg('quick_navigation_media_sort_' . $next));
+        $label = I18n::msg('quickbar_media_sort_' . $sort) . ' – ' . I18n::msg('quickbar_media_sort_next', I18n::msg('quickbar_media_sort_' . $next));
         $button = '<a class="rex-button qn-media-sort" href="' . escape($url) . '" title="' . escape($label) . '">'
             . '<i class="rex-icon fa-solid ' . $icon . '" aria-hidden="true"></i><span class="rex-u-visually-hidden">' . escape($label) . '</span></a>';
 

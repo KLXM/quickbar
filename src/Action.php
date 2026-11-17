@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation;
+namespace Klxm\Quickbar;
 
 /** Weitere Aktion an einem Treffer (z. B. „Ansehen“ oder „Metadaten“) – mit Pfeil rechts oder per Maus erreichbar */
 final readonly class Action

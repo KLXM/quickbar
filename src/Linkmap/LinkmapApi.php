@@ -1,8 +1,8 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Linkmap;
+namespace Klxm\Quickbar\Linkmap;
 
-use FriendsOfRedaxo\QuickNavigation\Query;
+use Klxm\Quickbar\Query;
 use Override;
 use Redaxo\Core\ApiFunction\ApiFunction;
 use Redaxo\Core\ApiFunction\AsApiFunction;
@@ -28,12 +28,12 @@ use function trim;
 use function usort;
 
 /**
- * Live-Suche in der Linkmap (nur lesend): ?rex-api-call=quick_navigation_linkmap&q=…&qn_language=…&picker=single.
+ * Live-Suche in der Linkmap (nur lesend): ?rex-api-call=quickbar_linkmap&q=…&qn_language=…&picker=single.
  *
  * Artikel und Kategorien nach Name oder ID, ohne q die zuletzt bearbeiteten – nach Kategorie- und Sprach-Rechten.
  * Mit picker liefert jeder Treffer die Artikel-ID zum Übernehmen.
  */
-#[AsApiFunction('quick_navigation_linkmap')]
+#[AsApiFunction('quickbar_linkmap')]
 final class LinkmapApi extends ApiFunction
 {
     private const int LIMIT = 15;
@@ -95,8 +95,8 @@ final class LinkmapApi extends ApiFunction
             foreach (array_slice($found, 0, self::LIMIT) as [, $article, $trail, $categoryId]) {
                 $items[] = [
                     'title' => $article->name,
-                    'meta' => ($trail ? implode(' › ', $trail) : I18n::msg('quick_navigation_root')) . ' · ID ' . $article->id
-                        . ($article->isOnline() ? '' : ' · ' . I18n::msg('quick_navigation_offline')),
+                    'meta' => ($trail ? implode(' › ', $trail) : I18n::msg('quickbar_root')) . ' · ID ' . $article->id
+                        . ($article->isOnline() ? '' : ' · ' . I18n::msg('quickbar_offline')),
                     'icon' => 'rex-icon rex-icon-' . match (true) {
                         $article->isSiteStartArticle() => 'sitestartarticle',
                         $article->startArticle => 'startarticle',

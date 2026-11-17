@@ -1,19 +1,19 @@
 /**
- * Quick Navigation – Befehlspalette im REDAXO-Backend.
+ * Quickbar – Befehlspalette im REDAXO-Backend.
  *
  * Knopf in der Kopfleiste oder ⌘K / Strg+K öffnet einen <dialog> mit Suchfeld (ARIA-Combobox) und Trefferliste.
- * Die Treffer liefert die API-Funktion quick_navigation (nach den Rechten des Benutzers); zuletzt geöffnete Treffer
+ * Die Treffer liefert die API-Funktion quickbar (nach den Rechten des Benutzers); zuletzt geöffnete Treffer
  * merkt sich der Browser (localStorage). Keine Inline-Styles, keine Inline-Handler (CSP).
  */
 (() => {
     'use strict';
 
-    const trigger = document.querySelector('.qn-trigger[data-quick-navigation]');
+    const trigger = document.querySelector('.qn-trigger[data-quickbar]');
     if (!trigger) {
         return;
     }
 
-    const cfg = JSON.parse(trigger.dataset.quickNavigation);
+    const cfg = JSON.parse(trigger.dataset.quickbar);
     const t = cfg.i18n;
     const isMac = /Mac|iPhone|iPad/.test(navigator.userAgentData?.platform || navigator.platform || navigator.userAgent);
     const mod = isMac ? '⌘' : 'Strg';

@@ -1,11 +1,11 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Tests\Integration;
+namespace Klxm\Quickbar\Tests\Integration;
 
-use FriendsOfRedaxo\QuickNavigation\Item;
-use FriendsOfRedaxo\QuickNavigation\Provider;
-use FriendsOfRedaxo\QuickNavigation\Query;
-use FriendsOfRedaxo\QuickNavigation\QuickNavigationAddon;
+use Klxm\Quickbar\Item;
+use Klxm\Quickbar\Provider;
+use Klxm\Quickbar\Query;
+use Klxm\Quickbar\QuickbarAddon;
 use Override;
 use PHPUnit\Framework\TestCase;
 use Redaxo\Core\Content\ArticleHandler;
@@ -46,7 +46,7 @@ abstract class IntegrationTestCase extends TestCase
     #[Override]
     public static function setUpBeforeClass(): void
     {
-        if (!QUICK_NAVIGATION_INTEGRATION) {
+        if (!QUICKBAR_INTEGRATION) {
             return;
         }
         self::$categoryA = CategoryHandler::add(['parent_id' => null, 'name' => 'qn-test Alpha Kategorie'])->id;
@@ -84,7 +84,7 @@ abstract class IntegrationTestCase extends TestCase
     #[Override]
     public static function tearDownAfterClass(): void
     {
-        if (!QUICK_NAVIGATION_INTEGRATION) {
+        if (!QUICKBAR_INTEGRATION) {
             return;
         }
         ArticleHandler::delete(self::$articleA);
@@ -102,7 +102,7 @@ abstract class IntegrationTestCase extends TestCase
         foreach ([self::$editorId, self::$adminId] as $id) {
             Sql::factory()->setQuery('DELETE FROM rex_user_role_assignment WHERE user_id = ?', [$id]);
             Sql::factory()->setQuery('DELETE FROM rex_user WHERE id = ?', [$id]);
-            QuickNavigationAddon::instance()->removeConfig('favorites.' . $id);
+            QuickbarAddon::instance()->removeConfig('favorites.' . $id);
             User::clearInstance($id);
         }
         Sql::factory()->setQuery('DELETE FROM rex_user_role WHERE id = ?', [self::$roleId]);
@@ -111,7 +111,7 @@ abstract class IntegrationTestCase extends TestCase
     #[Override]
     protected function setUp(): void
     {
-        if (!QUICK_NAVIGATION_INTEGRATION) {
+        if (!QUICKBAR_INTEGRATION) {
             self::markTestSkipped('Integrationstest: REDAXO_BOOTSTRAP ist nicht gesetzt.');
         }
     }

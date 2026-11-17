@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Media;
+namespace Klxm\Quickbar\Media;
 
 use Redaxo\Core\Database\Sql;
 use Redaxo\Core\MediaManager\MediaManager;

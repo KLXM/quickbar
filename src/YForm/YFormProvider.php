@@ -1,12 +1,12 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\YForm;
+namespace Klxm\Quickbar\YForm;
 
-use FriendsOfRedaxo\QuickNavigation\Action;
-use FriendsOfRedaxo\QuickNavigation\AsProvider;
-use FriendsOfRedaxo\QuickNavigation\Item;
-use FriendsOfRedaxo\QuickNavigation\Provider;
-use FriendsOfRedaxo\QuickNavigation\Query;
+use Klxm\Quickbar\Action;
+use Klxm\Quickbar\AsProvider;
+use Klxm\Quickbar\Item;
+use Klxm\Quickbar\Provider;
+use Klxm\Quickbar\Query;
 use Override;
 use Redaxo\Core\Translation\I18n;
 use Yakamara\YForm\Data\Query as RecordQuery;
@@ -30,7 +30,7 @@ final class YFormProvider implements Provider
     #[Override]
     public function label(?Query $query = null): string
     {
-        return I18n::msg('quick_navigation_group_yform');
+        return I18n::msg('quickbar_group_yform');
     }
 
     #[Override]
@@ -100,8 +100,8 @@ final class YFormProvider implements Provider
             url: YFormTables::url($table, ['func' => 'edit', 'id' => (int) $record->id]),
             meta: $table->label() . ' · ID ' . $record->id,
             icon: YFormTables::icon($table),
-            badge: $canEdit ? null : I18n::msg('quick_navigation_yform_readonly'),
-            actions: [new Action(I18n::msg('quick_navigation_yform_table'), YFormTables::url($table), 'rex-icon rex-icon-table')],
+            badge: $canEdit ? null : I18n::msg('quickbar_yform_readonly'),
+            actions: [new Action(I18n::msg('quickbar_yform_table'), YFormTables::url($table), 'rex-icon rex-icon-table')],
             score: $score,
         );
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Tests;
+namespace Klxm\Quickbar\Tests;
 
-use FriendsOfRedaxo\QuickNavigation\Query;
+use Klxm\Quickbar\Query;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Redaxo\Core\Security\User;

@@ -1,8 +1,8 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Tests;
+namespace Klxm\Quickbar\Tests;
 
-use FriendsOfRedaxo\QuickNavigation\Favorites;
+use Klxm\Quickbar\Favorites;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Provider;
+namespace Klxm\Quickbar\Provider;
 
-use FriendsOfRedaxo\QuickNavigation\AsProvider;
-use FriendsOfRedaxo\QuickNavigation\Item;
-use FriendsOfRedaxo\QuickNavigation\Provider;
-use FriendsOfRedaxo\QuickNavigation\Query;
+use Klxm\Quickbar\AsProvider;
+use Klxm\Quickbar\Item;
+use Klxm\Quickbar\Provider;
+use Klxm\Quickbar\Query;
 use Override;
 use Redaxo\Core\Backend\Controller;
 use Redaxo\Core\Backend\Page;
@@ -27,7 +27,7 @@ final class PageProvider implements Provider
     #[Override]
     public function label(?Query $query = null): string
     {
-        return I18n::msg('quick_navigation_group_pages');
+        return I18n::msg('quickbar_group_pages');
     }
 
     #[Override]

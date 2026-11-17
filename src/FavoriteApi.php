@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation;
+namespace Klxm\Quickbar;
 
 use Override;
 use Redaxo\Core\ApiFunction\ApiFunction;
@@ -21,7 +21,7 @@ use function in_array;
  *
  * Antwort {favorite: bool, current: bool, favorites: [{url, title, meta, icon}]} – neueste zuerst.
  */
-#[AsApiFunction('quick_navigation_favorite')]
+#[AsApiFunction('quickbar_favorite')]
 final class FavoriteApi extends ApiFunction
 {
     #[Override]

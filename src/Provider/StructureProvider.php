@@ -1,13 +1,13 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Provider;
+namespace Klxm\Quickbar\Provider;
 
-use FriendsOfRedaxo\QuickNavigation\Action;
-use FriendsOfRedaxo\QuickNavigation\AsProvider;
-use FriendsOfRedaxo\QuickNavigation\Domain\Domains;
-use FriendsOfRedaxo\QuickNavigation\Item;
-use FriendsOfRedaxo\QuickNavigation\Provider;
-use FriendsOfRedaxo\QuickNavigation\Query;
+use Klxm\Quickbar\Action;
+use Klxm\Quickbar\AsProvider;
+use Klxm\Quickbar\Domain\Domains;
+use Klxm\Quickbar\Item;
+use Klxm\Quickbar\Provider;
+use Klxm\Quickbar\Query;
 use Override;
 use Redaxo\Core\Content\Article;
 use Redaxo\Core\Content\Category;
@@ -33,7 +33,7 @@ final class StructureProvider implements Provider
     #[Override]
     public function label(?Query $query = null): string
     {
-        return I18n::msg($query?->isEmpty() ? 'quick_navigation_recent_edits' : 'quick_navigation_group_structure');
+        return I18n::msg($query?->isEmpty() ? 'quickbar_recent_edits' : 'quickbar_group_structure');
     }
 
     #[Override]
@@ -126,12 +126,12 @@ final class StructureProvider implements Provider
 
         $actions = [];
         $actions[] = new Action(
-            I18n::msg('quick_navigation_action_structure'),
+            I18n::msg('quickbar_action_structure'),
             Url::backendPage('structure', ['category_id' => $categoryId ?? 0, 'language' => $languageId]),
             'rex-icon rex-icon-open-category',
         );
         $actions[] = new Action(
-            I18n::msg('quick_navigation_action_view'),
+            I18n::msg('quickbar_action_view'),
             $article->getUrl(),
             'rex-icon rex-icon-external-link',
             true,
@@ -145,13 +145,13 @@ final class StructureProvider implements Provider
             $badges[] = Language::get($languageId)?->code;
         }
         if (!$article->isOnline()) {
-            $badges[] = I18n::msg('quick_navigation_offline');
+            $badges[] = I18n::msg('quickbar_offline');
         }
 
         return new Item(
             title: $title,
             url: Url::backendPage('content/edit', ['article_id' => $article->id, 'category_id' => $categoryId ?? 0, 'language' => $languageId]),
-            meta: ($trail ? implode(' › ', $trail) : I18n::msg('quick_navigation_root')) . ' · ID ' . $article->id,
+            meta: ($trail ? implode(' › ', $trail) : I18n::msg('quickbar_root')) . ' · ID ' . $article->id,
             icon: match (true) {
                 $article->isSiteStartArticle() => 'rex-icon rex-icon-sitestartarticle',
                 null !== $category => 'rex-icon rex-icon-category',

@@ -1,6 +1,7 @@
 {
-    "name": "friendsofredaxo/quick_navigation",
+    "name": "klxm/quickbar",
     "description": "Befehlspalette für das REDAXO-6-Backend: Live-Suche über Seiten, Struktur, Medien und mehr – mit ⌘K/Strg+K aus der Kopfleiste, nach den Rechten des Benutzers, erweiterbar durch andere AddOns",
+    "homepage": "https://github.com/KLXM/quickbar",
     "type": "redaxo-addon",
     "license": "MIT",
     "keywords": [
@@ -11,7 +12,6 @@
         "search",
         "command-palette"
     ],
-    "homepage": "https://github.com/FriendsOfREDAXO/quick_navigation",
     "authors": [
         {
             "name": "Thomas Skerbis",
@@ -19,13 +19,18 @@
             "role": "Lead"
         },
         {
+            "name": "KLXM Crossmedia GmbH",
+            "homepage": "https://klxm.de"
+        },
+        {
             "name": "Friends Of REDAXO",
-            "homepage": "https://friendsofredaxo.github.io"
+            "homepage": "https://friendsofredaxo.github.io",
+            "role": "REDAXO 5 version"
         }
     ],
     "support": {
-        "issues": "https://github.com/FriendsOfREDAXO/quick_navigation/issues",
-        "source": "https://github.com/FriendsOfREDAXO/quick_navigation"
+        "issues": "https://github.com/KLXM/quickbar/issues",
+        "source": "https://github.com/KLXM/quickbar"
     },
     "require": {
         "php": "^8.5",
@@ -36,20 +41,20 @@
     },
     "autoload": {
         "psr-4": {
-            "FriendsOfRedaxo\\QuickNavigation\\": "src/"
+            "Klxm\\Quickbar\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "FriendsOfRedaxo\\QuickNavigation\\Tests\\": "tests/"
+            "Klxm\\Quickbar\\Tests\\": "tests/"
         }
     },
     "extra": {
         "redaxo": {
-            "addon-class": "FriendsOfRedaxo\\QuickNavigation\\QuickNavigationAddon"
+            "addon-class": "Klxm\\Quickbar\\QuickbarAddon"
         },
         "branch-alias": {
-            "dev-main": "10.x-dev"
+            "dev-main": "1.x-dev"
         }
     }
 }

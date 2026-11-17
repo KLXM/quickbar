@@ -1,12 +1,12 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Provider;
+namespace Klxm\Quickbar\Provider;
 
-use FriendsOfRedaxo\QuickNavigation\Action;
-use FriendsOfRedaxo\QuickNavigation\AsProvider;
-use FriendsOfRedaxo\QuickNavigation\Item;
-use FriendsOfRedaxo\QuickNavigation\Provider;
-use FriendsOfRedaxo\QuickNavigation\Query;
+use Klxm\Quickbar\Action;
+use Klxm\Quickbar\AsProvider;
+use Klxm\Quickbar\Item;
+use Klxm\Quickbar\Provider;
+use Klxm\Quickbar\Query;
 use Override;
 use Redaxo\Core\Content\Article;
 use Redaxo\Core\Content\ArticleRevision;
@@ -37,7 +37,7 @@ final class WorkVersionProvider implements Provider
     #[Override]
     public function label(?Query $query = null): string
     {
-        return I18n::msg('quick_navigation_group_workversion');
+        return I18n::msg('quickbar_group_workversion');
     }
 
     #[Override]
@@ -82,12 +82,12 @@ final class WorkVersionProvider implements Provider
                 title: $article->name,
                 url: Url::backendPage('content/edit', ['article_id' => $article->id, 'category_id' => $categoryId ?? 0, 'language' => $languageId]),
                 meta: implode(' · ', [
-                    $trail ? implode(' › ', $trail) : I18n::msg('quick_navigation_root'),
-                    I18n::msg('quick_navigation_workversion_changed', null !== $changed ? Formatter::intlDateTime($changed) : '–', $row['user'] ?: '–'),
+                    $trail ? implode(' › ', $trail) : I18n::msg('quickbar_root'),
+                    I18n::msg('quickbar_workversion_changed', null !== $changed ? Formatter::intlDateTime($changed) : '–', $row['user'] ?: '–'),
                 ]),
                 icon: 'rex-icon rex-icon-unstable-version',
-                badge: $row['new'] ? I18n::msg('quick_navigation_workversion_new') : null,
-                actions: [new Action(I18n::msg('quick_navigation_action_view'), $article->getUrl(), 'rex-icon rex-icon-external-link', true)],
+                badge: $row['new'] ? I18n::msg('quickbar_workversion_new') : null,
+                actions: [new Action(I18n::msg('quickbar_action_view'), $article->getUrl(), 'rex-icon rex-icon-external-link', true)],
                 score: $score,
             );
             if (!$query->scoped && $query->isEmpty() && count($list) >= $query->limit) {

@@ -1,9 +1,9 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation;
+namespace Klxm\Quickbar;
 
-use FriendsOfRedaxo\QuickNavigation\Domain\Domain;
-use FriendsOfRedaxo\QuickNavigation\Domain\Domains;
+use Klxm\Quickbar\Domain\Domain;
+use Klxm\Quickbar\Domain\Domains;
 use Override;
 use Redaxo\Core\ApiFunction\ApiFunction;
 use Redaxo\Core\ApiFunction\AsApiFunction;
@@ -21,14 +21,14 @@ use function mb_substr;
 use function trim;
 
 /**
- * Strukturbaum (nur lesend): ?rex-api-call=quick_navigation_tree&category_id=…&qn_language=….
+ * Strukturbaum (nur lesend): ?rex-api-call=quickbar_tree&category_id=…&qn_language=….
  *
  *  - category_id  Ebene, die geladen wird (0 = oberste)
  *  - q            Suche: nur Treffer und ihre Kategorien, aufgeklappt
  *  - domain       Schlüssel der Domain (* = alle; ohne: die der Seite aus open)
  *  - open         Artikel- oder Kategorie-ID, bis zu der der Baum aufgeklappt geliefert wird (nur mit category_id=0)
  */
-#[AsApiFunction('quick_navigation_tree')]
+#[AsApiFunction('quickbar_tree')]
 final class TreeApi extends ApiFunction
 {
     #[Override]

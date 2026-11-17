@@ -1,13 +1,13 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Provider;
+namespace Klxm\Quickbar\Provider;
 
-use FriendsOfRedaxo\QuickNavigation\Action;
-use FriendsOfRedaxo\QuickNavigation\AsProvider;
-use FriendsOfRedaxo\QuickNavigation\Item;
-use FriendsOfRedaxo\QuickNavigation\Media\MediaFinder;
-use FriendsOfRedaxo\QuickNavigation\Provider;
-use FriendsOfRedaxo\QuickNavigation\Query;
+use Klxm\Quickbar\Action;
+use Klxm\Quickbar\AsProvider;
+use Klxm\Quickbar\Item;
+use Klxm\Quickbar\Media\MediaFinder;
+use Klxm\Quickbar\Provider;
+use Klxm\Quickbar\Query;
 use Override;
 use Redaxo\Core\Database\Sql;
 use Redaxo\Core\Filesystem\Url;
@@ -24,7 +24,7 @@ final class MediaProvider implements Provider
     #[Override]
     public function label(?Query $query = null): string
     {
-        return I18n::msg('quick_navigation_group_media');
+        return I18n::msg('quickbar_group_media');
     }
 
     #[Override]
@@ -51,10 +51,10 @@ final class MediaProvider implements Provider
             yield new Item(
                 title: $media->title ?: $media->fileName,
                 url: Url::backendPage('mediapool/media', ['file_id' => $media->id, 'rex_file_category' => $media->categoryId ?? 0]),
-                meta: ($media->title ? $media->fileName . ' · ' : '') . ($category->name ?? I18n::msg('quick_navigation_media_root')),
+                meta: ($media->title ? $media->fileName . ' · ' : '') . ($category->name ?? I18n::msg('quickbar_media_root')),
                 icon: 'rex-icon rex-icon-media',
                 badge: $media->getFormattedSize(),
-                actions: [new Action(I18n::msg('quick_navigation_action_view'), $media->getUrl(), 'rex-icon rex-icon-external-link', true)],
+                actions: [new Action(I18n::msg('quickbar_action_view'), $media->getUrl(), 'rex-icon rex-icon-external-link', true)],
                 thumbnail: MediaFinder::thumbnail($media),
                 score: $score,
             );
@@ -83,7 +83,7 @@ final class MediaProvider implements Provider
                 yield new Item(
                     title: $category->name,
                     url: Url::backendPage('mediapool/media', ['rex_file_category' => $category->id]),
-                    meta: I18n::msg('quick_navigation_media_category') . ($trail ? ' · ' . implode(' › ', $trail) : ''),
+                    meta: I18n::msg('quickbar_media_category') . ($trail ? ' · ' . implode(' › ', $trail) : ''),
                     icon: 'rex-icon rex-icon-media-category',
                     score: $score + 50,
                 );

@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation;
+namespace Klxm\Quickbar;
 
 use Redaxo\Core\Security\User;
 
@@ -31,7 +31,7 @@ final class Favorites
     /** @return list<array{url: string, title: string, meta: ?string, icon: ?string}> */
     public static function all(User $user): array
     {
-        $stored = QuickNavigationAddon::instance()->getConfig(self::key($user), []);
+        $stored = QuickbarAddon::instance()->getConfig(self::key($user), []);
         $list = [];
         foreach (is_array($stored) ? $stored : [] as $f) {
             if (is_array($f) && is_string($f['url'] ?? null) && is_string($f['title'] ?? null)) {
@@ -80,7 +80,7 @@ final class Favorites
                 'icon' => null !== $icon && '' !== trim($icon) ? mb_substr(trim($icon), 0, 100) : null,
             ];
         }
-        QuickNavigationAddon::instance()->setConfig(self::key($user), array_slice($kept, -self::MAX));
+        QuickbarAddon::instance()->setConfig(self::key($user), array_slice($kept, -self::MAX));
 
         return $added;
     }

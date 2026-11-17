@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Media;
+namespace Klxm\Quickbar\Media;
 
 use Override;
 use Redaxo\Core\ApiFunction\ApiFunction;
@@ -22,11 +22,11 @@ use function mb_substr;
 use function trim;
 
 /**
- * Live-Suche im Medienpool (nur lesend): ?rex-api-call=quick_navigation_media&q=…&types=jpg,png&picker=single.
+ * Live-Suche im Medienpool (nur lesend): ?rex-api-call=quickbar_media&q=…&types=jpg,png&picker=single.
  *
  * Ohne q die zuletzt bearbeiteten Medien. Mit picker liefert jeder Treffer den Dateinamen zum Übernehmen.
  */
-#[AsApiFunction('quick_navigation_media')]
+#[AsApiFunction('quickbar_media')]
 final class MediaApi extends ApiFunction
 {
     #[Override]
@@ -51,7 +51,7 @@ final class MediaApi extends ApiFunction
             $items[] = [
                 'title' => $media->title ?: $media->fileName,
                 'file' => $media->fileName,
-                'meta' => ($media->title ? $media->fileName . ' · ' : '') . ($category->name ?? I18n::msg('quick_navigation_media_root')) . ' · ' . $media->getFormattedSize(),
+                'meta' => ($media->title ? $media->fileName . ' · ' : '') . ($category->name ?? I18n::msg('quickbar_media_root')) . ' · ' . $media->getFormattedSize(),
                 'thumbnail' => MediaFinder::thumbnail($media),
                 'url' => Url::backendPage('mediapool/media', ['file_id' => $media->id, 'rex_file_category' => $media->categoryId ?? 0] + $args),
                 'pick' => '' !== $picker ? $media->fileName : null,

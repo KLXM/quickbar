@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation\Media;
+namespace Klxm\Quickbar\Media;
 
 use Redaxo\Core\Core;
 use Redaxo\Core\Database\Sql;
@@ -72,7 +72,7 @@ final class MediaPager
         ], static fn ($v) => null !== $v);
 
         $link = static function (?int $id, string $rel) use ($args): string {
-            $label = I18n::msg('prev' === $rel ? 'quick_navigation_media_prev' : 'quick_navigation_media_next');
+            $label = I18n::msg('prev' === $rel ? 'quickbar_media_prev' : 'quickbar_media_next');
             $icon = '<i class="rex-icon fa-solid ' . ('prev' === $rel ? 'fa-chevron-left' : 'fa-chevron-right') . '" aria-hidden="true"></i>';
             $neighbor = null !== $id ? Media::forId($id) : null;
             if (!$neighbor) {
@@ -89,7 +89,7 @@ final class MediaPager
                 . '<span>' . escape($name) . '</span></span></a>';
         };
 
-        return '<nav class="qn-media-pager" aria-label="' . escape(I18n::msg('quick_navigation_media_pager')) . '">'
+        return '<nav class="qn-media-pager" aria-label="' . escape(I18n::msg('quickbar_media_pager')) . '">'
             . $link($ids[$index - 1] ?? null, 'prev')
             . '<span class="qn-media-pager-pos">' . ($index + 1) . ' / ' . count($ids) . '</span>'
             . $link($ids[$index + 1] ?? null, 'next')

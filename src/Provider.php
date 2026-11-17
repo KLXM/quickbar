@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfRedaxo\QuickNavigation;
+namespace Klxm\Quickbar;
 
 /**
  * Quelle für Treffer in der Befehlspalette – eine Gruppe in der Ergebnisliste.
