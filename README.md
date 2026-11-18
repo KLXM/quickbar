@@ -20,8 +20,7 @@ open. Other addons add their own search sources and register their domains.
 ## Installation
 
 ```bash
-composer config repositories.quickbar '{"type": "vcs", "url": "https://github.com/KLXM/quickbar", "no-api": true}'
-composer require klxm/quickbar:1.x-dev
+composer require klxm/quickbar:^1.0@beta
 php bin/console migrate
 ```
 

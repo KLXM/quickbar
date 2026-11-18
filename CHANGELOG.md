@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0-dev
+## 1.0.0-beta.1 – 2026-11-18
 
 Neuentwicklung von quick_navigation für REDAXO 6 als eigenes KLXM-AddOn „Quickbar“ (klxm/quickbar). quick_navigation für REDAXO 5 bleibt bei Friends Of REDAXO.
 

@@ -20,8 +20,7 @@ mit „+“ für neue Datensätze und eine **Live-Suche im Medienpool** – imme
 ## Installation
 
 ```bash
-composer config repositories.quickbar '{"type": "vcs", "url": "https://github.com/KLXM/quickbar", "no-api": true}'
-composer require klxm/quickbar:1.x-dev
+composer require klxm/quickbar:^1.0@beta
 php bin/console migrate
 ```
 
